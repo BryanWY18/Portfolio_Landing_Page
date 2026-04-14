@@ -21,13 +21,21 @@ nav {
   justify-content: space-between;
   padding: 1.2rem 3rem;
   border-bottom: 1px solid #1a1a1a;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #0a0a0a;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  border: 1.5px solid #e63150;
+  border: 1.5px solid #31b3e6;
   border-radius: 6px;
   padding: 0.45rem 0.75rem;
   text-decoration: none;
@@ -45,7 +53,7 @@ nav {
 }
 
 .logo-text span {
-  color: #e63150;
+  color: #31cbe6;
   font-family: monospace;
 }
 
@@ -64,6 +72,28 @@ nav ul a {
 
 nav ul a:hover {
   color: #fff;
+}
+
+.logo-social {
+  display: flex;
+  align-items: center;
+  gap: 2.1rem;
+}
+
+.logo-social a {
+  color: #5f5f5f;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.logo-social a:hover {
+  color: #fff;
+}
+
+.logo-social svg {
+  width: 28px;
+  height: 28px;
 }
 
 /* ══════════════════════════════
@@ -197,6 +227,7 @@ nav ul a:hover {
   cursor: pointer;
   border-radius: 2px;
   transition: background 0.2s;
+  text-decoration: none;
 }
 
 .btn-primary:hover { background: #c2185b; }
@@ -213,6 +244,7 @@ nav ul a:hover {
   cursor: pointer;
   border-radius: 2px;
   transition: all 0.2s;
+  text-decoration: none;
 }
 
 .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
@@ -221,57 +253,56 @@ nav ul a:hover {
 .tech-icons {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.9rem;
   opacity: 0;
   animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
 }
 
 .tech-icon {
-  width: 34px;
-  height: 34px;
-  filter: grayscale(1) brightness(0.55);
+  width: 39px;
+  height: 39px;
+}
+
+.tech-icon-ex {
+  width: 64px;
+  height: 64px;
+  filter: brightness(0) invert(1);
 }
 
 /* ── Imagen ── */
 .hero-image {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   height: 100%;
 }
 
-.person-placeholder {
-  width: 100%;
-  max-width: 420px;
-  height: 520px;
-  border-radius: 4px;
-  overflow: hidden;
+.avatar-circle {
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  border: 4px solid #00d4ff;
+  padding: 6px;
+  background: #1a1a2e;
+  
+  /* CLAVE: Fuerza a que el contenido respete el círculo */
+  overflow: hidden; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Asegura que no se deforme si el padre es un flexbox */
+  flex-shrink: 0; 
 }
 
-.person-placeholder img {
+.avatar-circle img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-
-/* ══════════════════════════════
-   PROGRESS BAR
-══════════════════════════════ */
-.progress-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #1a1a1a;
-  z-index: 100;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 15%;
-  background: #e63150;
+  border-radius: 50%;
+  /* Esto recorta la foto para llenar el círculo sin deformarse */
+  object-fit: cover; 
+  /* Ajusta esto si quieres que se vea más la parte de arriba o el centro */
+  object-position: center top; 
 }
 
 /* ══════════════════════════════
@@ -283,6 +314,24 @@ nav ul a:hover {
   gap: 2rem;
   padding: 5rem 6rem;
   background: #0a0a0a;
+  align-items: start;
+}
+
+
+.workshops-header-skill {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  grid-column: 1 / -1; /* Esto hace que ocupe desde la columna 1 hasta la última */
+  margin-bottom: 3rem; /* Espacio entre el título y las tarjetas */
+}
+
+.workshops-header-skill h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.75rem;
 }
 
 .service-card {
@@ -304,6 +353,12 @@ nav ul a:hover {
   height: 100%;
 }
 
+.service-icon img {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) invert(1);
+}
+
 .service-card h3 {
   font-size: 1.1rem;
   font-weight: 700;
@@ -315,6 +370,91 @@ nav ul a:hover {
   color: #999;
   line-height: 1.75;
   max-width: 320px;
+}
+
+/* ── Estilos para el apartado detallado de Skills ── */
+
+.detailed-skills {
+  grid-column: 1 / -1; /* Ocupa todo el ancho si usas grid */
+  width: 100%;
+  max-width: 1000px; /* Un poco más estrecho para lectura */
+  margin: 1rem auto 0 auto;
+  padding: 0 2rem;
+  font-family: 'Fira Code', 'Courier New', monospace; /* Vibe técnico */
+}
+
+/* Encabezado de la Sección Detallada */
+.skills-category-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.divider-accent.small {
+  width: 3px;
+  height: 24px; /* Un acento más corto que el divisor principal */
+}
+
+.skills-category-header h3 {
+  color: #fff;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Grupos y Títulos */
+.skills-group {
+  margin-bottom: 2rem;
+}
+
+.sub-category-title {
+  color: #666; /* Gris tenue para que no compita con los tags */
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+}
+
+/* Contenedor de Tags (Flexbox para auto-ajuste) */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Espacio entre pastillas */
+}
+
+/* Estilo Base de las Pastillas (Tags) */
+.skill-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #0d0d17; /* Fondo muy oscuro */
+  color: #e0e0e0;
+  border: 1px solid #2a2a3a; /* Borde sutil por defecto */
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: default;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto Hover (Glow Cian) */
+.skill-tag:hover {
+  color: #00d4ff; /* Cian neón */
+  border-color: #00d4ff;
+  background: rgba(0, 212, 255, 0.05); /* Fondo muy suave cian */
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3); /* Resplandor */
+  transform: translateY(-2px); /* Pequeña elevación */
+}
+
+/* Variación para habilidades "en proceso" o "destacadas" */
+.skill-tag.success {
+  border-color: #27c93f; /* Verde terminal */
+  color: #27c93f;
+}
+
+.skill-tag.success:hover {
+  box-shadow: 0 0 10px rgba(39, 201, 63, 0.3);
 }
 
 /* ══════════════════════════════
@@ -333,7 +473,7 @@ nav ul a:hover {
 }
 
 .workshops-header-left {
-  max-width: 520px;
+  max-width: 600px;
 }
 
 .workshops-accent {
@@ -357,6 +497,90 @@ nav ul a:hover {
   line-height: 1.7;
 }
 
+.mini-terminal {
+  width: 340px;
+  background: rgba(13, 13, 23, 0.9);
+  border: 1px solid #00d4ff;
+  border-radius: 6px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 212, 255, 0.2);
+  overflow: hidden;
+  animation: fadeIn 1.5s ease;
+  margin-top: 35px;
+  margin-right: 75px;
+}
+
+/* Encabezado estilo macOS/Linux */
+.term-header {
+  background: #1a1a2e;
+  padding: 8px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+.term-title { color: #666; margin-left: 10px; font-size: 0.65rem; }
+
+/* Cuerpo de la terminal */
+.term-body {
+  padding: 12px;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.prompt { color: #00ffcc; font-weight: bold; }
+.res { color: #aaa; margin-left: 10px; opacity: 0; animation: showLine 10s infinite; }
+.success { color: #27c93f; }
+
+/* Animación de escritura */
+.typed {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  width: 0;
+  vertical-align: bottom; /* Alinea la base del texto */
+  max-width: fit-content;
+  animation: typing 13s steps(20) infinite;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+  color: #00d4ff;
+}
+
+/* 1. El Comando (Escritura) */
+@keyframes typing {
+  0% { width: 0; }
+  15% { width: 100%; }   /* Termina de escribirse rápido */
+  85% { width: 100%; }   /* Se queda visible hasta casi el final */
+  90%, 100% { width: 0; } /* Se borra de golpe para reiniciar */
+}
+
+/* 2. Las Respuestas (Aparición) */
+@keyframes showLine {
+  0%, 25% { opacity: 0; transform: translateY(5px); } /* Espera a que el comando termine */
+  30% { opacity: 1; transform: translateY(0); }      /* Aparece */
+  85% { opacity: 1; transform: translateY(0); }      /* Se queda visible */
+  90%, 100% { opacity: 0; }                          /* Desaparece con el comando */
+}
+
+/* 3. El Cuerpo de la Terminal (El "Clear") */
+@keyframes terminalClean {
+  0%, 85% { opacity: 1; }
+  90% { opacity: 0; } /* Flash de limpieza sincronizado */
+  100% { opacity: 1; }
+}
+
+.res:nth-child(2) { animation-delay: 0.5s; } /* Aparece casi de inmediato */
+.res:nth-child(3) { animation-delay: 1.2s; } /* Un poco después */
+.res:nth-child(4) { animation-delay: 2.0s; } /* La respuesta final */
+
 .btn-discover {
   background: transparent;
   color: #fff;
@@ -379,7 +603,7 @@ nav ul a:hover {
 
 .workshops-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
@@ -387,7 +611,7 @@ nav ul a:hover {
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: 4px;
-  padding: 2rem 1.75rem;
+  padding: 2rem 1.75rem;  
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -401,11 +625,34 @@ nav ul a:hover {
   border-color: transparent;
 }
 
+.workshop-card-blue {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  padding: 2rem 1.75rem;  
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: background 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+.workshop-card-blue:hover,
+.workshop-card-blue--featured {
+background: linear-gradient(135deg, #051622 0%, #004d66 50%, #00d4ff 100%);
+  border-color: transparent;
+}
+
 .workshop-card h3 {
   font-size: 1.05rem;
   font-weight: 700;
   color: #fff;
   line-height: 1.4;
+}
+
+.workshop-card svg {
+  width: 16px;
+  height: 16px; 
 }
 
 .workshop-card p {
@@ -421,7 +668,7 @@ nav ul a:hover {
   flex-direction: column;
   gap: 0.6rem;
   margin-top: auto;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -440,201 +687,109 @@ nav ul a:hover {
   opacity: 0.8;
 }
 
+.workshop-meta a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: n;
+}
+
 /* ══════════════════════════════
    FOOTER
 ══════════════════════════════ */
-footer {
-  background: #111;
-  padding: 4rem 3rem 2rem;
-  margin-top: 4rem;
-  border-top: 1px solid #1e1e1e;
+.footer {
+  background: #0a0a0c; /* Fondo oscuro profundo */
+  padding: 60px 20px;
+  color: #a0a0a0;
+  text-align: center;
 }
 
-.footer-main {
-  display: flex;
-  gap: 4rem;
-  padding-bottom: 3rem;
-}
-
-.footer-brand {
+.footer-container {
+  max-width: 800px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  min-width: 160px;
+  align-items: center;
+  gap: 25px; /* Espacio uniforme entre bloques */
 }
 
-.footer-brand svg {
-  width: 90px;
-  height: 108px;
+/* Nombre con estilo de código */
+.brand-name {
+  color: #fff;
+  font-size: 1.8rem;
+  font-family: 'Fira Code', monospace;
+  letter-spacing: -1px;
 }
 
-.footer-brand-name {
-  font-size: 1rem;
-  line-height: 1.4;
+.brand-name span {
+  color: #31cbe6;
   font-family: monospace;
 }
 
-.brand-red {
-  color: #e63150;
+.footer-tagline {
+  font-size: 1rem;
+  color: #666;
+  max-width: 400px;
 }
 
-.footer-nav {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  flex: 1;
-}
-
-.footer-col h4 {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 1.25rem;
-}
-
-.footer-col ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.footer-col ul a {
-  color: #888;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.2s;
-}
-
-.footer-col ul a:hover {
-  color: #fff;
-}
-
-.footer-divider {
-  height: 1px;
-  background: #1e1e1e;
-  margin: 0 0 2rem;
-}
-
-.footer-newsletter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding-bottom: 2rem;
-}
-
-.newsletter-title {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.4rem;
-}
-
-.newsletter-desc {
-  font-size: 0.85rem;
-  color: #777;
-  max-width: 480px;
-  line-height: 1.6;
-}
-
-.newsletter-form {
-  display: flex;
-  gap: 0.75rem;
-  flex-shrink: 0;
-}
-
-.newsletter-form input {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 2px;
-  color: #fff;
-  padding: 0.65rem 1rem;
-  font-size: 0.88rem;
-  width: 160px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.newsletter-form input::placeholder {
-  color: #555;
-}
-
-.newsletter-form input:focus {
-  border-color: #e63150;
-}
-
-.btn-subscribe {
-  background: #e63150;
-  color: #fff;
-  border: none;
-  padding: 0.65rem 1.4rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 2px;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.btn-subscribe:hover {
-  background: #c2185b;
-}
-
-.footer-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.footer-copy {
-  font-size: 0.8rem;
-  color: #555;
-  line-height: 1.6;
-}
-
-.footer-copy a {
-  color: #777;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 0.2s;
-}
-
-.footer-copy a:hover {
-  color: #fff;
-}
-
+/* Contenedor de iconos sociales */
 .footer-social {
   display: flex;
-  align-items: center;
-  gap: 1.1rem;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-.footer-social a {
-  color: #555;
+.social-link {
   display: flex;
   align-items: center;
-  transition: color 0.2s;
+  gap: 8px;
+  color: #a0a0a0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
-.footer-social a:hover {
-  color: #fff;
+.social-link svg {
+  width: 20px;
+  height: 20px;
 }
 
-.footer-social svg {
-  width: 18px;
-  height: 18px;
+/* Hover con tu color azul cian */
+.social-link:hover {
+  color: #00d4ff;
+  transform: translateY(-3px);
+}
+
+/* Línea de copyright */
+.footer-bottom {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #444;
+  border-top: 1px solid #1a1a1a;
+  padding-top: 25px;
+  width: 100%;
 }
 
 .section-divider {
   display: flex;
   align-items: flex-end;
   padding: 0 3rem;
+  width: 50%;
   height: 80px;
+}
+
+.section-divider-invert {
+  display: flex;
+  flex-direction: row-reverse; 
+  align-items: center;      /* Centrado vertical para que la línea cruce el acento */
+  padding: 0 3rem;
+  width: 50%;               /* Ocupa la mitad derecha */
+  height: 80px;
+  /* CLAVE: Empuja el bloque de 50% hacia la derecha */
+  margin-left: auto; 
 }
 
 .divider-line {
