@@ -484,6 +484,12 @@ nav ul a:hover {
   border-radius: 2px;
 }
 
+.workshops-header-left span {
+  color: #31cbe6;
+  font-family: monospace;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.3); /* Resplandor */
+}
+
 .workshops-header h2 {
   font-size: 2.4rem;
   font-weight: 800;
@@ -498,7 +504,8 @@ nav ul a:hover {
 }
 
 .mini-terminal {
-  width: 340px;
+  width: 400px;
+  height: 200px;
   background: rgba(13, 13, 23, 0.9);
   border: 1px solid #00d4ff;
   border-radius: 6px;
@@ -772,6 +779,16 @@ background: linear-gradient(135deg, #051622 0%, #004d66 50%, #00d4ff 100%);
   padding-top: 25px;
   width: 100%;
 }
+
+.cursor-footer {
+  animation: blink 1s infinite;
+  color: #fff;
+}
+
+
+/* ══════════════════════════════
+   DIVIDER
+══════════════════════════════ */
 
 .section-divider {
   display: flex;
