@@ -1,0 +1,56 @@
+name: Deploy Portafolio GHCR
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Vital para poder subir la imagen a GHCR
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }} # GitHub genera esto solo, no necesitas crear un Secret
+
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          # Aquí se guarda la imagen en GitHub
+          tags: ghcr.io/${{ github.repository }}:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            # 1. Login en el VPS para que pueda bajar la imagen de GitHub
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            # 2. Bajar la nueva versión
+            docker pull ghcr.io/${{ github.repository }}:latest
+
+            # 3. Detener y borrar el anterior si existe
+            docker stop portafolio-main || true && docker rm portafolio-main || true
+
+            # 4. Correr con la red de tu Proxy
+            docker run -d --name portafolio-main \
+              --network proxy_default \
+              --restart always \
+              ghcr.io/${{ github.repository }}:latest
