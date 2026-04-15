@@ -27,7 +27,7 @@ jobs:
           context: .
           push: true
           # Aquí se guarda la imagen en GitHub
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/bryanwy18/portfolio_landing_page:latest
 
   deploy:
     needs: build-and-push
@@ -44,7 +44,7 @@ jobs:
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
             # 2. Bajar la nueva versión
-            docker pull ghcr.io/${{ github.repository }}:latest
+            docker pull ghcr.io/bryanwy18/portfolio_landing_page:latest
 
             # 3. Detener y borrar el anterior si existe
             docker stop portafolio-main || true && docker rm portafolio-main || true
@@ -53,4 +53,4 @@ jobs:
             docker run -d --name portafolio-main \
               --network proxy_default \
               --restart always \
-              ghcr.io/${{ github.repository }}:latest
+              ghcr.io/bryanwy18/portfolio_landing_page:latest
