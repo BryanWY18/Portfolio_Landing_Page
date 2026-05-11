@@ -820,3 +820,326 @@ background: linear-gradient(135deg, #051622 0%, #004d66 50%, #00d4ff 100%);
   background: #e63150;
   flex-shrink: 0;
 }
+
+/* ══════════════════════════════
+   RESPONSIVE — pega esto al final de style.css
+   ══════════════════════════════ */
+
+/* ── Tablet grande (max 1024px) ── */
+@media (max-width: 1024px) {
+
+  nav {
+    padding: 1rem 2rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr 300px;
+    padding: 2rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .avatar-circle {
+    width: 260px;
+    height: 260px;
+  }
+
+  .services {
+    padding: 4rem 3rem;
+    gap: 1.5rem;
+  }
+
+  .detailed-skills {
+    padding: 0 1rem;
+  }
+
+  .workshops {
+    padding: 3rem 2rem 4rem;
+  }
+
+  .mini-terminal {
+    width: 240px;
+    height: 160px;
+    margin-right: 20px;
+    font-size: 0.65rem;
+  }
+
+  .term-body {
+    padding: 8px;
+  }
+
+  .workshops-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section-divider,
+  .section-divider-invert {
+    width: 60%;
+  }
+}
+
+/* ── Tablet (max 768px) ── */
+@media (max-width: 768px) {
+
+  /* Navbar */
+  nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+  }
+
+  nav ul {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo-social {
+    display: none;
+  }
+
+  /* Hero: una sola columna, barras a la izquierda, foto centrada */
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 3rem 1.5rem;
+    gap: 2.5rem;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    align-items: flex-start; /* barras y texto alineados a la izquierda */
+  }
+
+  .bar-group {
+    justify-content: flex-start; /* barras siempre a la izquierda */
+  }
+
+  .hero-text {
+    margin-left: 0;
+  }
+
+  .hero-text h1 {
+    white-space: normal;
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .cta {
+    justify-content: flex-start;
+  }
+
+  .tech-icons {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 0 0.5rem; /* aire en los costados */
+  }
+
+  /* Avatar centrado independientemente */
+  .hero-image {
+    justify-content: center;
+    order: -1; /* foto arriba del contenido en tablet */
+  }
+
+  .avatar-circle {
+    width: 220px;
+    height: 220px;
+  }
+
+  /* Services */
+  .services {
+    grid-template-columns: 1fr;
+    padding: 3rem 2.5rem; /* más aire a los costados */
+    gap: 2.5rem;
+  }
+
+  .workshops-header-skill {
+    grid-column: 1;
+  }
+
+  .detailed-skills {
+    padding: 0 1.5rem; /* más aire a los costados */
+  }
+
+  .tags-container {
+    padding: 0 0.25rem;
+  }
+
+  /* Workshops */
+  .workshops {
+    padding: 3rem 2rem;
+  }
+
+  .workshops-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .mini-terminal {
+    width: 100%;
+    max-width: 360px;
+    height: 150px;
+    margin-right: 0;
+    margin-top: 0;
+    font-size: 0.65rem;
+  }
+
+  .workshops-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Divider */
+  .section-divider,
+  .section-divider-invert {
+    width: 80%;
+    padding: 0 1.5rem;
+  }
+
+  .section-divider-invert {
+    margin-left: auto;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 40px 2rem;
+  }
+
+  .footer-social {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
+
+/* ── Móvil (max 480px) ── */
+@media (max-width: 480px) {
+
+  /* Navbar */
+  nav {
+    padding: 0.9rem 1rem;
+  }
+
+  nav ul {
+    gap: 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  /* Hero: barras a la izquierda, foto centrada */
+  .hero {
+    padding: 2rem 1.25rem;
+  }
+
+  .hero-content {
+    align-items: flex-start; /* barras y texto a la izquierda */
+  }
+
+  .bar-group {
+    justify-content: flex-start;
+  }
+
+  .hero-image {
+    justify-content: center; /* foto centrada */
+  }
+
+  .hero-text h1 {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .avatar-circle {
+    width: 180px;
+    height: 180px;
+  }
+
+  /* Barras de código más pequeñas */
+  .bar {
+    height: 8px;
+  }
+
+  .code-bars {
+    gap: 8px;
+  }
+
+  /* Botones apilados */
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Tech icons con aire */
+  .tech-icons {
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    padding: 0 0.75rem; /* aire en los costados */
+  }
+
+  /* Services con más aire */
+  .services {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .detailed-skills {
+    padding: 0 1.75rem; /* aire generoso en los costados */
+  }
+
+  .skill-tag {
+    font-size: 0.78rem;
+    padding: 5px 10px;
+  }
+
+  /* Workshops */
+  .workshops {
+    padding: 2.5rem 1.25rem 3rem;
+  }
+
+  .workshops-header h2,
+  .workshops-header-skill h2 {
+    font-size: 1.8rem;
+  }
+
+  .workshop-card,
+  .workshop-card-blue {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .mini-terminal {
+    width: 100%;
+    height: 140px;
+    font-size: 0.6rem;
+  }
+
+  /* Divider */
+  .section-divider,
+  .section-divider-invert {
+    width: 100%;
+    padding: 0 1.25rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 30px 1.5rem;
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
+  }
+
+  .footer-social {
+    gap: 14px;
+  }
+
+  .social-link span {
+    display: none;
+  }
+}
